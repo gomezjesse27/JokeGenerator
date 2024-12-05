@@ -7,70 +7,67 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23A15C912D0110A600EC1278 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A15C902D0110A600EC1278 /* AppDelegate.swift */; };
-		23A15C932D0110A600EC1278 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A15C922D0110A600EC1278 /* SceneDelegate.swift */; };
-		23A15C952D0110A600EC1278 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A15C942D0110A600EC1278 /* ViewController.swift */; };
-		23A15C982D0110A600EC1278 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23A15C962D0110A600EC1278 /* Main.storyboard */; };
-		23A15C9B2D0110A600EC1278 /* JokeGenerator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 23A15C992D0110A600EC1278 /* JokeGenerator.xcdatamodeld */; };
-		23A15C9D2D0110A800EC1278 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23A15C9C2D0110A800EC1278 /* Assets.xcassets */; };
-		23A15CA02D0110A800EC1278 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23A15C9E2D0110A800EC1278 /* LaunchScreen.storyboard */; };
-		23A15CAB2D0110A800EC1278 /* JokeGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A15CAA2D0110A800EC1278 /* JokeGeneratorTests.swift */; };
-		23A15CB52D0110A800EC1278 /* JokeGeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A15CB42D0110A800EC1278 /* JokeGeneratorUITests.swift */; };
-		23A15CB72D0110A800EC1278 /* JokeGeneratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A15CB62D0110A800EC1278 /* JokeGeneratorUITestsLaunchTests.swift */; };
-		23A15CC42D0110D100EC1278 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A15CC32D0110D100EC1278 /* APIModel.swift */; };
+		2371458D2D023762008F318E /* JokeGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371458C2D023762008F318E /* JokeGeneratorApp.swift */; };
+		2371458F2D023762008F318E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371458E2D023762008F318E /* ContentView.swift */; };
+		237145912D023763008F318E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237145902D023763008F318E /* Assets.xcassets */; };
+		237145942D023763008F318E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237145932D023763008F318E /* Preview Assets.xcassets */; };
+		237145962D023763008F318E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145952D023763008F318E /* Persistence.swift */; };
+		237145992D023763008F318E /* JokeGenerator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 237145972D023763008F318E /* JokeGenerator.xcdatamodeld */; };
+		237145A32D023763008F318E /* JokeGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145A22D023763008F318E /* JokeGeneratorTests.swift */; };
+		237145AD2D023763008F318E /* JokeGeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145AC2D023763008F318E /* JokeGeneratorUITests.swift */; };
+		237145AF2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145AE2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift */; };
+		237145BC2D02379D008F318E /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145BB2D02379D008F318E /* APIModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		23A15CA72D0110A800EC1278 /* PBXContainerItemProxy */ = {
+		2371459F2D023763008F318E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 23A15C852D0110A600EC1278 /* Project object */;
+			containerPortal = 237145812D023761008F318E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 23A15C8C2D0110A600EC1278;
+			remoteGlobalIDString = 237145882D023762008F318E;
 			remoteInfo = JokeGenerator;
 		};
-		23A15CB12D0110A800EC1278 /* PBXContainerItemProxy */ = {
+		237145A92D023763008F318E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 23A15C852D0110A600EC1278 /* Project object */;
+			containerPortal = 237145812D023761008F318E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 23A15C8C2D0110A600EC1278;
+			remoteGlobalIDString = 237145882D023762008F318E;
 			remoteInfo = JokeGenerator;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		23A15C8D2D0110A600EC1278 /* JokeGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JokeGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		23A15C902D0110A600EC1278 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		23A15C922D0110A600EC1278 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		23A15C942D0110A600EC1278 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		23A15C972D0110A600EC1278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		23A15C9A2D0110A600EC1278 /* JokeGenerator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JokeGenerator.xcdatamodel; sourceTree = "<group>"; };
-		23A15C9C2D0110A800EC1278 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		23A15C9F2D0110A800EC1278 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		23A15CA12D0110A800EC1278 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23A15CA62D0110A800EC1278 /* JokeGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokeGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		23A15CAA2D0110A800EC1278 /* JokeGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorTests.swift; sourceTree = "<group>"; };
-		23A15CB02D0110A800EC1278 /* JokeGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokeGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		23A15CB42D0110A800EC1278 /* JokeGeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorUITests.swift; sourceTree = "<group>"; };
-		23A15CB62D0110A800EC1278 /* JokeGeneratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		23A15CC32D0110D100EC1278 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		237145892D023762008F318E /* JokeGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JokeGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2371458C2D023762008F318E /* JokeGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorApp.swift; sourceTree = "<group>"; };
+		2371458E2D023762008F318E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		237145902D023763008F318E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		237145932D023763008F318E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		237145952D023763008F318E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		237145982D023763008F318E /* JokeGenerator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JokeGenerator.xcdatamodel; sourceTree = "<group>"; };
+		2371459E2D023763008F318E /* JokeGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokeGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		237145A22D023763008F318E /* JokeGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorTests.swift; sourceTree = "<group>"; };
+		237145A82D023763008F318E /* JokeGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokeGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		237145AC2D023763008F318E /* JokeGeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorUITests.swift; sourceTree = "<group>"; };
+		237145AE2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		237145BB2D02379D008F318E /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		23A15C8A2D0110A600EC1278 /* Frameworks */ = {
+		237145862D023762008F318E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23A15CA32D0110A800EC1278 /* Frameworks */ = {
+		2371459B2D023763008F318E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23A15CAD2D0110A800EC1278 /* Frameworks */ = {
+		237145A52D023763008F318E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -80,55 +77,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23A15C842D0110A600EC1278 = {
+		237145802D023761008F318E = {
 			isa = PBXGroup;
 			children = (
-				23A15C8F2D0110A600EC1278 /* JokeGenerator */,
-				23A15CA92D0110A800EC1278 /* JokeGeneratorTests */,
-				23A15CB32D0110A800EC1278 /* JokeGeneratorUITests */,
-				23A15C8E2D0110A600EC1278 /* Products */,
+				2371458B2D023762008F318E /* JokeGenerator */,
+				237145A12D023763008F318E /* JokeGeneratorTests */,
+				237145AB2D023763008F318E /* JokeGeneratorUITests */,
+				2371458A2D023762008F318E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		23A15C8E2D0110A600EC1278 /* Products */ = {
+		2371458A2D023762008F318E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				23A15C8D2D0110A600EC1278 /* JokeGenerator.app */,
-				23A15CA62D0110A800EC1278 /* JokeGeneratorTests.xctest */,
-				23A15CB02D0110A800EC1278 /* JokeGeneratorUITests.xctest */,
+				237145892D023762008F318E /* JokeGenerator.app */,
+				2371459E2D023763008F318E /* JokeGeneratorTests.xctest */,
+				237145A82D023763008F318E /* JokeGeneratorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		23A15C8F2D0110A600EC1278 /* JokeGenerator */ = {
+		2371458B2D023762008F318E /* JokeGenerator */ = {
 			isa = PBXGroup;
 			children = (
-				23A15C902D0110A600EC1278 /* AppDelegate.swift */,
-				23A15C922D0110A600EC1278 /* SceneDelegate.swift */,
-				23A15C942D0110A600EC1278 /* ViewController.swift */,
-				23A15C962D0110A600EC1278 /* Main.storyboard */,
-				23A15C9C2D0110A800EC1278 /* Assets.xcassets */,
-				23A15C9E2D0110A800EC1278 /* LaunchScreen.storyboard */,
-				23A15CA12D0110A800EC1278 /* Info.plist */,
-				23A15C992D0110A600EC1278 /* JokeGenerator.xcdatamodeld */,
-				23A15CC32D0110D100EC1278 /* APIModel.swift */,
+				2371458C2D023762008F318E /* JokeGeneratorApp.swift */,
+				2371458E2D023762008F318E /* ContentView.swift */,
+				237145902D023763008F318E /* Assets.xcassets */,
+				237145952D023763008F318E /* Persistence.swift */,
+				237145972D023763008F318E /* JokeGenerator.xcdatamodeld */,
+				237145922D023763008F318E /* Preview Content */,
+				237145BB2D02379D008F318E /* APIModel.swift */,
 			);
 			path = JokeGenerator;
 			sourceTree = "<group>";
 		};
-		23A15CA92D0110A800EC1278 /* JokeGeneratorTests */ = {
+		237145922D023763008F318E /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				23A15CAA2D0110A800EC1278 /* JokeGeneratorTests.swift */,
+				237145932D023763008F318E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		237145A12D023763008F318E /* JokeGeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				237145A22D023763008F318E /* JokeGeneratorTests.swift */,
 			);
 			path = JokeGeneratorTests;
 			sourceTree = "<group>";
 		};
-		23A15CB32D0110A800EC1278 /* JokeGeneratorUITests */ = {
+		237145AB2D023763008F318E /* JokeGeneratorUITests */ = {
 			isa = PBXGroup;
 			children = (
-				23A15CB42D0110A800EC1278 /* JokeGeneratorUITests.swift */,
-				23A15CB62D0110A800EC1278 /* JokeGeneratorUITestsLaunchTests.swift */,
+				237145AC2D023763008F318E /* JokeGeneratorUITests.swift */,
+				237145AE2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift */,
 			);
 			path = JokeGeneratorUITests;
 			sourceTree = "<group>";
@@ -136,13 +139,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		23A15C8C2D0110A600EC1278 /* JokeGenerator */ = {
+		237145882D023762008F318E /* JokeGenerator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 23A15CBA2D0110A800EC1278 /* Build configuration list for PBXNativeTarget "JokeGenerator" */;
+			buildConfigurationList = 237145B22D023763008F318E /* Build configuration list for PBXNativeTarget "JokeGenerator" */;
 			buildPhases = (
-				23A15C892D0110A600EC1278 /* Sources */,
-				23A15C8A2D0110A600EC1278 /* Frameworks */,
-				23A15C8B2D0110A600EC1278 /* Resources */,
+				237145852D023762008F318E /* Sources */,
+				237145862D023762008F318E /* Frameworks */,
+				237145872D023762008F318E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -150,69 +153,69 @@
 			);
 			name = JokeGenerator;
 			productName = JokeGenerator;
-			productReference = 23A15C8D2D0110A600EC1278 /* JokeGenerator.app */;
+			productReference = 237145892D023762008F318E /* JokeGenerator.app */;
 			productType = "com.apple.product-type.application";
 		};
-		23A15CA52D0110A800EC1278 /* JokeGeneratorTests */ = {
+		2371459D2D023763008F318E /* JokeGeneratorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 23A15CBD2D0110A800EC1278 /* Build configuration list for PBXNativeTarget "JokeGeneratorTests" */;
+			buildConfigurationList = 237145B52D023763008F318E /* Build configuration list for PBXNativeTarget "JokeGeneratorTests" */;
 			buildPhases = (
-				23A15CA22D0110A800EC1278 /* Sources */,
-				23A15CA32D0110A800EC1278 /* Frameworks */,
-				23A15CA42D0110A800EC1278 /* Resources */,
+				2371459A2D023763008F318E /* Sources */,
+				2371459B2D023763008F318E /* Frameworks */,
+				2371459C2D023763008F318E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				23A15CA82D0110A800EC1278 /* PBXTargetDependency */,
+				237145A02D023763008F318E /* PBXTargetDependency */,
 			);
 			name = JokeGeneratorTests;
 			productName = JokeGeneratorTests;
-			productReference = 23A15CA62D0110A800EC1278 /* JokeGeneratorTests.xctest */;
+			productReference = 2371459E2D023763008F318E /* JokeGeneratorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		23A15CAF2D0110A800EC1278 /* JokeGeneratorUITests */ = {
+		237145A72D023763008F318E /* JokeGeneratorUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 23A15CC02D0110A800EC1278 /* Build configuration list for PBXNativeTarget "JokeGeneratorUITests" */;
+			buildConfigurationList = 237145B82D023763008F318E /* Build configuration list for PBXNativeTarget "JokeGeneratorUITests" */;
 			buildPhases = (
-				23A15CAC2D0110A800EC1278 /* Sources */,
-				23A15CAD2D0110A800EC1278 /* Frameworks */,
-				23A15CAE2D0110A800EC1278 /* Resources */,
+				237145A42D023763008F318E /* Sources */,
+				237145A52D023763008F318E /* Frameworks */,
+				237145A62D023763008F318E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				23A15CB22D0110A800EC1278 /* PBXTargetDependency */,
+				237145AA2D023763008F318E /* PBXTargetDependency */,
 			);
 			name = JokeGeneratorUITests;
 			productName = JokeGeneratorUITests;
-			productReference = 23A15CB02D0110A800EC1278 /* JokeGeneratorUITests.xctest */;
+			productReference = 237145A82D023763008F318E /* JokeGeneratorUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		23A15C852D0110A600EC1278 /* Project object */ = {
+		237145812D023761008F318E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					23A15C8C2D0110A600EC1278 = {
+					237145882D023762008F318E = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
-					23A15CA52D0110A800EC1278 = {
+					2371459D2D023763008F318E = {
 						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 23A15C8C2D0110A600EC1278;
+						TestTargetID = 237145882D023762008F318E;
 					};
-					23A15CAF2D0110A800EC1278 = {
+					237145A72D023763008F318E = {
 						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = 23A15C8C2D0110A600EC1278;
+						TestTargetID = 237145882D023762008F318E;
 					};
 				};
 			};
-			buildConfigurationList = 23A15C882D0110A600EC1278 /* Build configuration list for PBXProject "JokeGenerator" */;
+			buildConfigurationList = 237145842D023761008F318E /* Build configuration list for PBXProject "JokeGenerator" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -220,37 +223,36 @@
 				en,
 				Base,
 			);
-			mainGroup = 23A15C842D0110A600EC1278;
-			productRefGroup = 23A15C8E2D0110A600EC1278 /* Products */;
+			mainGroup = 237145802D023761008F318E;
+			productRefGroup = 2371458A2D023762008F318E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				23A15C8C2D0110A600EC1278 /* JokeGenerator */,
-				23A15CA52D0110A800EC1278 /* JokeGeneratorTests */,
-				23A15CAF2D0110A800EC1278 /* JokeGeneratorUITests */,
+				237145882D023762008F318E /* JokeGenerator */,
+				2371459D2D023763008F318E /* JokeGeneratorTests */,
+				237145A72D023763008F318E /* JokeGeneratorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		23A15C8B2D0110A600EC1278 /* Resources */ = {
+		237145872D023762008F318E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23A15CA02D0110A800EC1278 /* LaunchScreen.storyboard in Resources */,
-				23A15C9D2D0110A800EC1278 /* Assets.xcassets in Resources */,
-				23A15C982D0110A600EC1278 /* Main.storyboard in Resources */,
+				237145942D023763008F318E /* Preview Assets.xcassets in Resources */,
+				237145912D023763008F318E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23A15CA42D0110A800EC1278 /* Resources */ = {
+		2371459C2D023763008F318E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23A15CAE2D0110A800EC1278 /* Resources */ = {
+		237145A62D023763008F318E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -260,71 +262,52 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		23A15C892D0110A600EC1278 /* Sources */ = {
+		237145852D023762008F318E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23A15C952D0110A600EC1278 /* ViewController.swift in Sources */,
-				23A15C912D0110A600EC1278 /* AppDelegate.swift in Sources */,
-				23A15C9B2D0110A600EC1278 /* JokeGenerator.xcdatamodeld in Sources */,
-				23A15C932D0110A600EC1278 /* SceneDelegate.swift in Sources */,
-				23A15CC42D0110D100EC1278 /* APIModel.swift in Sources */,
+				237145962D023763008F318E /* Persistence.swift in Sources */,
+				2371458F2D023762008F318E /* ContentView.swift in Sources */,
+				237145992D023763008F318E /* JokeGenerator.xcdatamodeld in Sources */,
+				2371458D2D023762008F318E /* JokeGeneratorApp.swift in Sources */,
+				237145BC2D02379D008F318E /* APIModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23A15CA22D0110A800EC1278 /* Sources */ = {
+		2371459A2D023763008F318E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23A15CAB2D0110A800EC1278 /* JokeGeneratorTests.swift in Sources */,
+				237145A32D023763008F318E /* JokeGeneratorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23A15CAC2D0110A800EC1278 /* Sources */ = {
+		237145A42D023763008F318E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23A15CB52D0110A800EC1278 /* JokeGeneratorUITests.swift in Sources */,
-				23A15CB72D0110A800EC1278 /* JokeGeneratorUITestsLaunchTests.swift in Sources */,
+				237145AD2D023763008F318E /* JokeGeneratorUITests.swift in Sources */,
+				237145AF2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		23A15CA82D0110A800EC1278 /* PBXTargetDependency */ = {
+		237145A02D023763008F318E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 23A15C8C2D0110A600EC1278 /* JokeGenerator */;
-			targetProxy = 23A15CA72D0110A800EC1278 /* PBXContainerItemProxy */;
+			target = 237145882D023762008F318E /* JokeGenerator */;
+			targetProxy = 2371459F2D023763008F318E /* PBXContainerItemProxy */;
 		};
-		23A15CB22D0110A800EC1278 /* PBXTargetDependency */ = {
+		237145AA2D023763008F318E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 23A15C8C2D0110A600EC1278 /* JokeGenerator */;
-			targetProxy = 23A15CB12D0110A800EC1278 /* PBXContainerItemProxy */;
+			target = 237145882D023762008F318E /* JokeGenerator */;
+			targetProxy = 237145A92D023763008F318E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		23A15C962D0110A600EC1278 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23A15C972D0110A600EC1278 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		23A15C9E2D0110A800EC1278 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				23A15C9F2D0110A800EC1278 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		23A15CB82D0110A800EC1278 /* Debug */ = {
+		237145B02D023763008F318E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -384,7 +367,7 @@
 			};
 			name = Debug;
 		};
-		23A15CB92D0110A800EC1278 /* Release */ = {
+		237145B12D023763008F318E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -438,19 +421,20 @@
 			};
 			name = Release;
 		};
-		23A15CBB2D0110A800EC1278 /* Debug */ = {
+		237145B32D023763008F318E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"JokeGenerator/Preview Content\"";
 				DEVELOPMENT_TEAM = L2L3Q8DQXA;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = JokeGenerator/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -466,19 +450,20 @@
 			};
 			name = Debug;
 		};
-		23A15CBC2D0110A800EC1278 /* Release */ = {
+		237145B42D023763008F318E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"JokeGenerator/Preview Content\"";
 				DEVELOPMENT_TEAM = L2L3Q8DQXA;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = JokeGenerator/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -494,7 +479,7 @@
 			};
 			name = Release;
 		};
-		23A15CBE2D0110A800EC1278 /* Debug */ = {
+		237145B62D023763008F318E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -514,7 +499,7 @@
 			};
 			name = Debug;
 		};
-		23A15CBF2D0110A800EC1278 /* Release */ = {
+		237145B72D023763008F318E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -534,7 +519,7 @@
 			};
 			name = Release;
 		};
-		23A15CC12D0110A800EC1278 /* Debug */ = {
+		237145B92D023763008F318E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -552,7 +537,7 @@
 			};
 			name = Debug;
 		};
-		23A15CC22D0110A800EC1278 /* Release */ = {
+		237145BA2D023763008F318E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -573,38 +558,38 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		23A15C882D0110A600EC1278 /* Build configuration list for PBXProject "JokeGenerator" */ = {
+		237145842D023761008F318E /* Build configuration list for PBXProject "JokeGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				23A15CB82D0110A800EC1278 /* Debug */,
-				23A15CB92D0110A800EC1278 /* Release */,
+				237145B02D023763008F318E /* Debug */,
+				237145B12D023763008F318E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23A15CBA2D0110A800EC1278 /* Build configuration list for PBXNativeTarget "JokeGenerator" */ = {
+		237145B22D023763008F318E /* Build configuration list for PBXNativeTarget "JokeGenerator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				23A15CBB2D0110A800EC1278 /* Debug */,
-				23A15CBC2D0110A800EC1278 /* Release */,
+				237145B32D023763008F318E /* Debug */,
+				237145B42D023763008F318E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23A15CBD2D0110A800EC1278 /* Build configuration list for PBXNativeTarget "JokeGeneratorTests" */ = {
+		237145B52D023763008F318E /* Build configuration list for PBXNativeTarget "JokeGeneratorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				23A15CBE2D0110A800EC1278 /* Debug */,
-				23A15CBF2D0110A800EC1278 /* Release */,
+				237145B62D023763008F318E /* Debug */,
+				237145B72D023763008F318E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		23A15CC02D0110A800EC1278 /* Build configuration list for PBXNativeTarget "JokeGeneratorUITests" */ = {
+		237145B82D023763008F318E /* Build configuration list for PBXNativeTarget "JokeGeneratorUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				23A15CC12D0110A800EC1278 /* Debug */,
-				23A15CC22D0110A800EC1278 /* Release */,
+				237145B92D023763008F318E /* Debug */,
+				237145BA2D023763008F318E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -612,17 +597,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		23A15C992D0110A600EC1278 /* JokeGenerator.xcdatamodeld */ = {
+		237145972D023763008F318E /* JokeGenerator.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				23A15C9A2D0110A600EC1278 /* JokeGenerator.xcdatamodel */,
+				237145982D023763008F318E /* JokeGenerator.xcdatamodel */,
 			);
-			currentVersion = 23A15C9A2D0110A600EC1278 /* JokeGenerator.xcdatamodel */;
+			currentVersion = 237145982D023763008F318E /* JokeGenerator.xcdatamodel */;
 			path = JokeGenerator.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 23A15C852D0110A600EC1278 /* Project object */;
+	rootObject = 237145812D023761008F318E /* Project object */;
 }

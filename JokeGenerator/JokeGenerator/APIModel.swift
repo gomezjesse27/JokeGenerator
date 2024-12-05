@@ -1,5 +1,12 @@
-import Foundation
+//
+//  APIModel.swift
+//  JokeGenerator
+//
+//  Created by Jaysen Gomez on 12/5/24.
+//
 
+import Foundation
+// test
 enum JokeCategory: String {
     case programming = "Programming"
     case misc = "Misc"
