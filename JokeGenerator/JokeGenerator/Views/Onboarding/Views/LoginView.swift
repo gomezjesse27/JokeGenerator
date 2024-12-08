@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
+    @Binding var mailLoggedIn: String
     
     @FocusState var showKeyboard: Bool
     @State private var showAlert: Bool = false
@@ -64,7 +66,7 @@ struct LoginView: View {
             //Login Btn
             Button {
                 Task {
-                    
+                    try await login()
                 }
             } label: {
                 Text("Login")
@@ -90,11 +92,22 @@ struct LoginView: View {
     
 //MARK: - Function
     
+    @MainActor
+    private func login() async throws {
+        do {
+            try await Auth.auth().signIn(withEmail: email, password: password)
+            UserDefaults.standard.set(email, forKey: USER_EMAIL)
+            mailLoggedIn = email
+        } catch {
+            print("DEBUG: err logging in \(error.localizedDescription)")
+            showAlert.toggle()
+        }
+    }
     
 }
 
 #Preview {
-    LoginView()
+    LoginView(mailLoggedIn: .constant(""))
 }
 
 //MARK: - textField

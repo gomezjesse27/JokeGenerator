@@ -10,14 +10,21 @@ import SwiftUI
 struct SettingView: View {
     
     @State var username: String = "Group 4"
+    
     @Binding var showSetting: Bool
+    @Binding var emailLoggedIn: String
+    @Binding var user: User
     
 //MARK: - View
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("Setting Page").padding()
+                Text("Username: \(user.username)")
+                    .padding()
+                
+                Text("Email: \(user.email)")
+                    .padding()
                 
                 Spacer()
                 
@@ -53,11 +60,12 @@ struct SettingView: View {
 //MARK: - Function
     
     private func signOut() {
-        
+        AuthService.shared.signOut()
+        emailLoggedIn = ""
     }
     
 }
 
 #Preview {
-    SettingView(showSetting: .constant(true))
+    SettingView(showSetting: .constant(true), emailLoggedIn: .constant("mail"), user: .constant(User.exampleUser))
 }

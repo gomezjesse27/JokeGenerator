@@ -3,20 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2371458D2D023762008F318E /* JokeGeneratorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371458C2D023762008F318E /* JokeGeneratorApp.swift */; };
-		2371458F2D023762008F318E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2371458E2D023762008F318E /* ContentView.swift */; };
 		237145912D023763008F318E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237145902D023763008F318E /* Assets.xcassets */; };
 		237145942D023763008F318E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 237145932D023763008F318E /* Preview Assets.xcassets */; };
-		237145962D023763008F318E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145952D023763008F318E /* Persistence.swift */; };
 		237145992D023763008F318E /* JokeGenerator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 237145972D023763008F318E /* JokeGenerator.xcdatamodeld */; };
 		237145A32D023763008F318E /* JokeGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145A22D023763008F318E /* JokeGeneratorTests.swift */; };
 		237145AD2D023763008F318E /* JokeGeneratorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145AC2D023763008F318E /* JokeGeneratorUITests.swift */; };
 		237145AF2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145AE2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift */; };
-		237145BC2D02379D008F318E /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237145BB2D02379D008F318E /* APIModel.swift */; };
+		3A2B701D2D059F60000A5CBB /* CONSTANTS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2B701C2D059F60000A5CBB /* CONSTANTS.swift */; };
+		3A2B701F2D05A24C000A5CBB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2B701E2D05A24C000A5CBB /* ContentView.swift */; };
+		3A2B70212D05AE3C000A5CBB /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3A2B70202D05AE3C000A5CBB /* FirebaseFirestoreCombine-Community */; };
+		3AB0E4812D030F1500525144 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AB0E4802D030F1500525144 /* GoogleService-Info.plist */; };
+		3AB0E4842D030F6E00525144 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB0E4832D030F6E00525144 /* FirebaseAuth */; };
+		3AB0E4862D030F6E00525144 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB0E4852D030F6E00525144 /* FirebaseCore */; };
+		3AB0E4882D030F6E00525144 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB0E4872D030F6E00525144 /* FirebaseDatabase */; };
+		3AB0E48A2D030F6E00525144 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB0E4892D030F6E00525144 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,24 +44,34 @@
 /* Begin PBXFileReference section */
 		237145892D023762008F318E /* JokeGenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JokeGenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2371458C2D023762008F318E /* JokeGeneratorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorApp.swift; sourceTree = "<group>"; };
-		2371458E2D023762008F318E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		237145902D023763008F318E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		237145932D023763008F318E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		237145952D023763008F318E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		237145982D023763008F318E /* JokeGenerator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JokeGenerator.xcdatamodel; sourceTree = "<group>"; };
 		2371459E2D023763008F318E /* JokeGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokeGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		237145A22D023763008F318E /* JokeGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorTests.swift; sourceTree = "<group>"; };
 		237145A82D023763008F318E /* JokeGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JokeGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		237145AC2D023763008F318E /* JokeGeneratorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorUITests.swift; sourceTree = "<group>"; };
 		237145AE2D023763008F318E /* JokeGeneratorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeGeneratorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		237145BB2D02379D008F318E /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
+		3A2B701C2D059F60000A5CBB /* CONSTANTS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CONSTANTS.swift; sourceTree = "<group>"; };
+		3A2B701E2D05A24C000A5CBB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3AB0E4802D030F1500525144 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3AB0E4712D030C8800525144 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
+		3AB0E47D2D030CAA00525144 /* API */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = API; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		237145862D023762008F318E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB0E4882D030F6E00525144 /* FirebaseDatabase in Frameworks */,
+				3AB0E48A2D030F6E00525144 /* FirebaseFirestore in Frameworks */,
+				3AB0E4862D030F6E00525144 /* FirebaseCore in Frameworks */,
+				3A2B70212D05AE3C000A5CBB /* FirebaseFirestoreCombine-Community in Frameworks */,
+				3AB0E4842D030F6E00525144 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				2371458B2D023762008F318E /* JokeGenerator */,
+				237145922D023763008F318E /* Preview Content */,
 				237145A12D023763008F318E /* JokeGeneratorTests */,
 				237145AB2D023763008F318E /* JokeGeneratorUITests */,
 				2371458A2D023762008F318E /* Products */,
@@ -101,12 +117,13 @@
 			isa = PBXGroup;
 			children = (
 				2371458C2D023762008F318E /* JokeGeneratorApp.swift */,
-				2371458E2D023762008F318E /* ContentView.swift */,
-				237145902D023763008F318E /* Assets.xcassets */,
-				237145952D023763008F318E /* Persistence.swift */,
+				3A2B701E2D05A24C000A5CBB /* ContentView.swift */,
+				3A2B701C2D059F60000A5CBB /* CONSTANTS.swift */,
+				3AB0E4712D030C8800525144 /* Views */,
+				3AB0E47D2D030CAA00525144 /* API */,
 				237145972D023763008F318E /* JokeGenerator.xcdatamodeld */,
-				237145922D023763008F318E /* Preview Content */,
-				237145BB2D02379D008F318E /* APIModel.swift */,
+				3AB0E4802D030F1500525144 /* GoogleService-Info.plist */,
+				237145902D023763008F318E /* Assets.xcassets */,
 			);
 			path = JokeGenerator;
 			sourceTree = "<group>";
@@ -150,6 +167,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3AB0E4712D030C8800525144 /* Views */,
+				3AB0E47D2D030CAA00525144 /* API */,
 			);
 			name = JokeGenerator;
 			productName = JokeGenerator;
@@ -224,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 237145802D023761008F318E;
+			packageReferences = (
+				3AB0E4822D030F6E00525144 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 2371458A2D023762008F318E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -242,6 +266,7 @@
 			files = (
 				237145942D023763008F318E /* Preview Assets.xcassets in Resources */,
 				237145912D023763008F318E /* Assets.xcassets in Resources */,
+				3AB0E4812D030F1500525144 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,11 +291,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				237145962D023763008F318E /* Persistence.swift in Sources */,
-				2371458F2D023762008F318E /* ContentView.swift in Sources */,
+				3A2B701F2D05A24C000A5CBB /* ContentView.swift in Sources */,
+				3A2B701D2D059F60000A5CBB /* CONSTANTS.swift in Sources */,
 				237145992D023763008F318E /* JokeGenerator.xcdatamodeld in Sources */,
 				2371458D2D023762008F318E /* JokeGeneratorApp.swift in Sources */,
-				237145BC2D02379D008F318E /* APIModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,8 +452,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"JokeGenerator/Preview Content\"";
-				DEVELOPMENT_TEAM = L2L3Q8DQXA;
+				DEVELOPMENT_TEAM = 7Q54M9F3YT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -457,8 +480,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"JokeGenerator/Preview Content\"";
-				DEVELOPMENT_TEAM = L2L3Q8DQXA;
+				DEVELOPMENT_TEAM = 7Q54M9F3YT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -595,6 +617,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3AB0E4822D030F6E00525144 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A2B70202D05AE3C000A5CBB /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB0E4822D030F6E00525144 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		3AB0E4832D030F6E00525144 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB0E4822D030F6E00525144 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		3AB0E4852D030F6E00525144 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB0E4822D030F6E00525144 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		3AB0E4872D030F6E00525144 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB0E4822D030F6E00525144 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		3AB0E4892D030F6E00525144 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB0E4822D030F6E00525144 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		237145972D023763008F318E /* JokeGenerator.xcdatamodeld */ = {

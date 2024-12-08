@@ -6,16 +6,6 @@
 //
 
 import Foundation
-// test
-enum JokeCategory: String {
-    case programming = "Programming"
-    case misc = "Misc"
-    case dark = "Dark"
-    case pun = "Pun"
-    case spooky = "Spooky"
-    case christmas = "Christmas"
-    case any = "Any"
-}
 
 struct Joke: Codable {
     let type: String

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     
+    @Binding var email: String
     
     var body: some View {
         NavigationView {
@@ -30,7 +31,7 @@ struct WelcomeView: View {
                 Spacer()
                 
                 NavigationLink {
-                    LoginView()
+                    LoginView(mailLoggedIn: $email)
                 } label: {
                     Text("Login")
                         .font(.headline)
@@ -43,7 +44,7 @@ struct WelcomeView: View {
                 }
                 
                 NavigationLink {
-                    SignupView()
+                    SignupView(mailLoggedIn: $email)
                 } label: {
                     Text("Create an account")
                         .font(.headline)
@@ -60,5 +61,5 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView()
+    WelcomeView(email: .constant(""))
 }

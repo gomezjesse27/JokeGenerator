@@ -9,6 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @Binding var emailLoggedIn: String
+    
+    @State var user: User = User(username: "", email: "")
+    @AppStorage(USER_EMAIL) var userEmail: String?
+    
     @State private var selectedCategory: JokeCategory = .any
     @State private var jokeText: String = "Select a category and press refresh!"
     @State private var isLoading: Bool = false
@@ -22,7 +27,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Group 4")
+                Text(user.username)
                     .font(.headline)
                     .fontWeight(.bold)
                     .frame(width: 100, height: 50)
@@ -95,7 +100,12 @@ struct HomeView: View {
             
         }
         .padding()
-        .onAppear(perform: fetchJoke)
+        .onAppear {
+            fetchJoke()
+            Task {
+                try await fetchUserData()
+            }
+        }
         .alert("Warning!", isPresented: $showAlertDark) {
             Button("No, take me back", role: .destructive, action: {
                 selectedCategory = .any
@@ -113,11 +123,20 @@ struct HomeView: View {
             }
         }
         .fullScreenCover(isPresented: $showSetting) {
-            SettingView(showSetting: $showSetting)
+            SettingView(showSetting: $showSetting, emailLoggedIn: $emailLoggedIn, user: $user)
         }
     }
     
 //MARK: - Functions
+    
+    private func fetchUserData() async throws {
+        do {
+            let email = userEmail ?? ""
+            user = try await AuthService.shared.loadUserData(email: email)
+        } catch {
+            print("DEBUG: err loading user data")
+        }
+    }
 
     private func fetchJoke() {
         isLoading = true
@@ -157,6 +176,6 @@ extension JokeCategory: CaseIterable, Identifiable {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(emailLoggedIn: .constant(""))
     }
 }

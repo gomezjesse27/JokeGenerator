@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SignupView: View {
+    @Binding var mailLoggedIn: String
     
     @FocusState var showKeyboard: Bool
     @State private var showAlert: Bool = false
+    @State private var alertErr: String = ""
     
     @State var email: String = ""
     @State var password: String = ""
@@ -64,16 +66,20 @@ struct SignupView: View {
             
             //signup Btn
             Button {
-                
+                Task {
+                    try await createUser()
+                    
+                }
             } label: {
                 Text("Create an account")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.white)
                     .frame(width: 360, height: 44)
-                    .background(Color.pink)
+                    .background(isValid() ? .pink : .gray)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
             }
+            .disabled(!isValid())
             
             Spacer()
         }
@@ -82,15 +88,25 @@ struct SignupView: View {
         .alert("Error Creating account!", isPresented: $showAlert) {
             Button("OK", role: .cancel, action: {})
         } message: {
-            Text("There is something wrong with your signup preocess, please try again.")
+            Text(alertErr)
         }
     }
     
 //MARK: - Function
     
+    private func isValid() -> Bool {
+        return !username.isEmpty && !password.isEmpty && !email.isEmpty
+    }
+    
     private func createUser() async throws {
-        try await AuthService.shared.createUser(user: User(username: username, email: email)) { show, error in
-            self.showAlert = show
+        do {
+            let user = User(username: username, email: email)
+            try await AuthService.shared.createUser(user: user, pw: password)
+            UserDefaults.standard.set(email, forKey: USER_EMAIL)
+            mailLoggedIn = email
+        } catch {
+            alertErr = error.localizedDescription
+            showAlert.toggle()
         }
         
     }
@@ -98,5 +114,5 @@ struct SignupView: View {
 }
 
 #Preview {
-    SignupView()
+    SignupView(mailLoggedIn: .constant(""))
 }
