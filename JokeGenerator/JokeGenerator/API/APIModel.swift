@@ -31,14 +31,35 @@ class JokeAPIClient {
         amount: Int = 1,
         completion: @escaping (Result<[Joke], Error>) -> Void
     ) {
-        var urlComponents = URLComponents(string: "\(baseURL)/\(category.rawValue)")!
-        urlComponents.queryItems = [URLQueryItem(name: "amount", value: "\(amount)")]
+        // Define blacklist flags
+        let blacklistFlags = ["nsfw", "religious", "political", "racist", "sexist", "explicit"]
+        let blacklistParam = blacklistFlags.joined(separator: ",")
+        
+        // Determine categories
+        let categories: [String]
+        if category == .any {
+            categories = JokeCategory.allCases
+                .filter { $0 != .dark && $0 != .any } // Exclude "dark" and "any" from the list
+                .map { $0.rawValue }
+        } else {
+            categories = [category.rawValue]
+        }
+        
+        let categoryParam = categories.joined(separator: ",")
+
+        // Build URL components
+        var urlComponents = URLComponents(string: "\(baseURL)/\(categoryParam)")!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "amount", value: "\(amount)"),
+            URLQueryItem(name: "blacklistFlags", value: blacklistParam) // Add blacklist flags
+        ]
         
         guard let url = urlComponents.url else {
             completion(.failure(NSError(domain: "InvalidURL", code: -1, userInfo: nil)))
             return
         }
 
+        // Perform the network request
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
@@ -51,24 +72,18 @@ class JokeAPIClient {
             }
 
             do {
-                // Try decoding the response
+                // Decode the response
                 let apiResponse = try JSONDecoder().decode(JokeAPIResponse.self, from: data)
                 
-                // Handle jokes array or single joke
                 if let jokes = apiResponse.jokes {
                     completion(.success(jokes))
                 } else if let type = apiResponse.type {
-                    // Construct single joke manually
                     let joke = Joke(type: type, joke: apiResponse.joke, setup: apiResponse.setup, delivery: apiResponse.delivery)
                     completion(.success([joke]))
                 } else {
                     completion(.failure(NSError(domain: "InvalidResponse", code: -3, userInfo: nil)))
                 }
             } catch {
-                // Print raw response for debugging
-                if let rawJSON = String(data: data, encoding: .utf8) {
-                    print("Raw Response: \(rawJSON)")
-                }
                 completion(.failure(error))
             }
         }
@@ -76,5 +91,3 @@ class JokeAPIClient {
         task.resume()
     }
 }
-
-
