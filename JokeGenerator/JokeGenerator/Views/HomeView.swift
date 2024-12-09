@@ -1,8 +1,8 @@
 //
-//  ContentView.swift
-//  JokeGenerator
+//HomeView.swift
+//JokeGenerator
 //
-//  Created by Jaysen Gomez on 12/5/24.
+//Created by Jaysen Gomez, Mariah salgado
 //
 
 import SwiftUI
@@ -10,10 +10,9 @@ import SwiftUI
 struct HomeView: View {
     
     @Binding var emailLoggedIn: String
-    
     @State var user: User = User(username: "", email: "")
     @AppStorage(USER_EMAIL) var userEmail: String?
-    
+
     @State private var selectedCategory: JokeCategory = .any
     @State private var jokeText: String = "Select a category and press refresh!"
     @State private var isLoading: Bool = false
@@ -21,127 +20,198 @@ struct HomeView: View {
     @State private var currentJokeCate: String = ""
     @State private var showSetting: Bool = false
     @State private var showAlertDark: Bool = false
-    
+
 //MARK: - View
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(user.username)
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .frame(width: 100, height: 50)
-                    .foregroundStyle(.gray)
+        GeometryReader { geometry in
+            let isLandscape = geometry.size.width > geometry.size.height// Check for landscape mode
+            
+            VStack(spacing: isLandscape ? 10 : 20) {
                 
-                Spacer()
+                // Header section (title + settings button)
+                headerView
                 
-                Image(systemName: "gear")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .padding(.all, 12)
-                    .background(.gray.opacity(0.5))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .onTapGesture {
-                        showSetting.toggle()
+                if isLandscape {
+                    // Layout for landscape mode
+                    HStack(spacing: 20) {
+                        // Joke Display in landscape mode
+                        jokeCardView
+                            .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.7)
+                        
+                        VStack(spacing: 20) {
+                            // Picker and Button stacked vertically
+                            categoryPickerView
+                                .frame(width: geometry.size.width * 0.35)
+                            
+                            refreshButtonView
+                                .frame(width: geometry.size.width * 0.35)
+                        }
                     }
-            }
-            .padding(.top, -8)
-            
-            Spacer()
-            
-            // simple text to display the joke
-            Text(jokeText)
-                .font(.system(size: 24))
-                .fontWeight(.regular)
-                .multilineTextAlignment(.center)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .center)
-            
-            Text("- \(currentJokeCate) joke")
-                .font(.subheadline)
-                .fontWeight(.regular)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .trailing)
-            
-            Spacer()
-            
-            Divider()
-                .frame(height: 2)
-                .background(.black)
-                .clipShape(.capsule)
-            
-            // For the categories. Simple picker
-            Picker("Category", selection: $selectedCategory) {
-                ForEach(JokeCategory.allCases, id: \.self) { category in
-                    Text(category.rawValue.capitalized).tag(category)
+                } else {
+                    // Portrait layout
+                    Spacer()
+                    
+                    // Joke Display
+                    jokeCardView
+                        .frame(height: geometry.size.height * 0.4)
+                    
+                    Spacer()
+                    
+                    // Picker and Button stacked vertically
+                    categoryPickerView
+                    refreshButtonView
                 }
             }
-            .pickerStyle(WheelPickerStyle())
-            .frame(height: 160)
+            .padding()
+            .background(backgroundColor(for: selectedCategory))
+            .animation(.easeInOut, value: selectedCategory)
+            .onAppear {
+                fetchJoke()
+                Task {
+                    try await fetchUserData()
+                }
+            }
+            .alert("Warning!", isPresented: $showAlertDark) {
+                Button("No, take me back", role: .destructive) {
+                    selectedCategory = .any
+                }
+                Button("OK, let's go", role: .cancel) {}
+            } message: {
+                Text("The dark jokes can be offensive to some people. Please proceed with caution.")
+            }
+            .onChange(of: jokeText) { _ in
+                currentJokeCate = selectedCategory.rawValue.capitalized
+            }
+            .onChange(of: selectedCategory) { _ in
+                if selectedCategory == .dark {
+                    showAlertDark.toggle()
+                }
+            }
+            .fullScreenCover(isPresented: $showSetting) {
+                SettingView(showSetting: $showSetting, emailLoggedIn: $emailLoggedIn, user: $user)
+            }
+        }
+    }
+}
 
-            // simple button for refresh
-            Button(action: fetchJoke) {
-                HStack {
-                    if isLoading {
-                        ProgressView()
-                    } else {
-                        Text("Next \"\(selectedCategory.rawValue.capitalized)\" Joke")
-                            .font(.system(size: 20))
-                            .fontWeight(.medium)
-                            .frame(maxWidth: .infinity, maxHeight: 56, alignment: .center)
-                            .background(Color.blue)
-                            .foregroundStyle(.white)
-                            .cornerRadius(12)
-                            .padding(.bottom)
-                    }
+//MARK: - Subviews
+
+extension HomeView {
+
+    var headerView: some View {
+        HStack {
+            // Title
+            Text(user.username.isEmpty ? "Welcome!" : "Hi, \(user.username)!")
+                .font(.largeTitle.bold())
+                .foregroundColor(.white)
+            
+            Spacer()
+            // Settings button
+            Image(systemName: "gear")
+                .resizable()
+                .frame(width: 24, height: 24)
+                .padding()
+                .background(Color.white.opacity(0.2))
+                .clipShape(Circle())
+                .onTapGesture {
+                    showSetting.toggle()
+                }
+        }
+        .padding(.horizontal)
+    }
+    
+    var jokeCardView: some View {
+        // Card to display the joke
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white.opacity(0.9))
+                .shadow(radius: 5)
+            
+            VStack(spacing: 10) {
+                Text(jokeText)// Joke content
+                    .font(.title2.bold())
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .foregroundColor(.black)
+                
+                Text("- \(currentJokeCate) joke")// Joke category
+                    .font(.footnote.italic())
+                    .foregroundColor(.gray)
+            }
+            .padding()
+        }
+        .padding(.horizontal)
+    }
+    
+    var categoryPickerView: some View {
+        // Picker to choose joke categories
+        Picker("Category", selection: $selectedCategory) {
+            ForEach(JokeCategory.allCases, id: \.self) { category in
+                Text(category.rawValue.capitalized)
+                    .tag(category)
+                    .foregroundColor(.white)
+            }
+        }
+        .pickerStyle(SegmentedPickerStyle())
+        .padding(.horizontal)
+        .background(Color.gray.opacity(0.4))
+        .cornerRadius(8)
+    }
+    
+    var refreshButtonView: some View {
+        // Button to fetch a new joke
+        Button(action: fetchJoke) {
+            HStack {
+                if isLoading {
+                    ProgressView()
+                } else {
+                    Text("Next \"\(selectedCategory.rawValue.capitalized)\" Joke")
+                        .font(.headline)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue.opacity(0.7)) // Lighter blue color
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                        .shadow(color: .gray, radius: 5, x: 0, y: 3)
                 }
             }
-            .disabled(isLoading)
-            
         }
-        .padding()
-        .onAppear {
-            fetchJoke()
-            Task {
-                try await fetchUserData()
-            }
-        }
-        .alert("Warning!", isPresented: $showAlertDark) {
-            Button("No, take me back", role: .destructive, action: {
-                selectedCategory = .any
-            })
-            Button("OK, let's go", role: .cancel, action: {})
-        } message: {
-            Text("The dark jokes can be offensive to some people. Please proceed with caution.")
-        }
-        .onChange(of: jokeText) { _ in
-            currentJokeCate = selectedCategory.rawValue.capitalized
-        }
-        .onChange(of: selectedCategory) { _ in
-            if selectedCategory == .dark {
-                showAlertDark.toggle()
-            }
-        }
-        .fullScreenCover(isPresented: $showSetting) {
-            SettingView(showSetting: $showSetting, emailLoggedIn: $emailLoggedIn, user: $user)
+        .disabled(isLoading)// Disable while loading
+        .padding(.horizontal)
+    }
+}
+
+//MARK: - Functions
+
+extension HomeView {
+    
+    private func backgroundColor(for category: JokeCategory) -> Color {// Change background color based on category
+        switch category {
+        case .any: return Color.blue.opacity(0.7)
+        case .programming: return Color.green
+        case .misc: return Color.orange
+        case .dark: return Color.black
+        case .pun: return Color.yellow
+        case .spooky: return Color.purple
+        case .christmas: return Color.red
         }
     }
     
-//MARK: - Functions
-    
     private func fetchUserData() async throws {
+        // Fetch user data from backend
         do {
             let email = userEmail ?? ""
             user = try await AuthService.shared.loadUserData(email: email)
         } catch {
-            print("DEBUG: err loading user data")
+            print("DEBUG: Error loading user data")
         }
     }
 
     private func fetchJoke() {
         isLoading = true
         jokeText = "Loading..."
-        // Load text, maybe replace with an icon or something...?
+        
         JokeAPIClient.fetchJokes(category: selectedCategory, amount: 1) { result in
             DispatchQueue.main.async {
                 isLoading = false
@@ -164,11 +234,12 @@ struct HomeView: View {
     }
 }
 
-// jokecategory to work with swiftui...
+// JokeCategory Support for SwiftUI
+
 extension JokeCategory: CaseIterable, Identifiable {
     public var id: String { rawValue }
     public static var allCases: [JokeCategory] {
-        return [.any, .programming, .misc, .dark, .pun, .spooky, .christmas]
+        [.any, .programming, .misc, .dark, .pun, .spooky, .christmas]
     }
 }
 
