@@ -2,7 +2,7 @@
 // HomeView.swift
 // JokeGenerator
 //
-// Created by Jaysen Gomez, Mariah Salgado
+// Created by Jaysen Gomez, Mariah Salgado, Kyle Lee
 //
 
 import SwiftUI
@@ -16,58 +16,68 @@ struct HomeView: View {
     @State private var selectedCategory: JokeCategory = .any
     @State private var jokeText: String = "Select a category and press refresh!"
     @State private var isLoading: Bool = false
-    
+    @State private var jokeHistory: [String] = [] // Store jokes for history
+
     @State private var currentJokeCate: String = ""
     @State private var showSetting: Bool = false
     @State private var showAlertDark: Bool = false
+    @State private var showHistory: Bool = false // Navigate to HistoryView
 
     // MARK: - View
-    
+
     var body: some View {
         GeometryReader { geometry in
             let isLandscape = geometry.size.width > geometry.size.height // Check for landscape mode
 
-            ZStack { // Use ZStack to ensure the background fills the entire screen
+            ZStack {
                 backgroundColor(for: selectedCategory)
                     .ignoresSafeArea()
                 
                 VStack(spacing: isLandscape ? 10 : 20) {
                     
-                    // Header section (title + settings button)
+                    // Header section
                     headerView
-                    
+
                     if isLandscape {
-                        // Layout for landscape mode
                         HStack(spacing: 20) {
-                            // Joke Display in landscape mode
                             jokeCardView
                                 .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.7)
-                            
+
                             VStack(spacing: 20) {
-                                // Picker and Button stacked vertically
                                 categoryPickerView
                                     .frame(width: geometry.size.width * 0.35)
-                                
+
                                 refreshButtonView
                                     .frame(width: geometry.size.width * 0.35)
                             }
                         }
                     } else {
-                        // Portrait layout
                         Spacer()
-                        
-                        // Joke Display
-                        jokeCardView
-                            .frame(height: geometry.size.height * 0.4)
-                        
+                        jokeCardView.frame(height: geometry.size.height * 0.4)
                         Spacer()
-                        
-                        // Picker and Button stacked vertically
                         categoryPickerView
                         refreshButtonView
                     }
+
+                    // Navigation button to HistoryView
+                    Button(action: {
+                        showHistory = true
+                    }) {
+                        Text("View Joke History")
+                            .font(.title2.bold())
+                            .padding()
+                            .frame(maxWidth: .infinity, minHeight: 60)
+                            .background(Color.green.opacity(0.9))
+                            .foregroundColor(.white)
+                            .cornerRadius(15)
+                            .shadow(color: .gray, radius: 5, x: 0, y: 3)
+                    }
+                    .padding(.horizontal)
                 }
                 .padding()
+                .sheet(isPresented: $showHistory) {
+                    HistoryView(history: jokeHistory)
+                }
                 .animation(.easeInOut, value: selectedCategory)
                 .onAppear {
                     fetchJoke()
@@ -82,17 +92,6 @@ struct HomeView: View {
                     Button("OK, let's go", role: .cancel) {}
                 } message: {
                     Text("The dark jokes can be offensive to some people. Please proceed with caution.")
-                }
-                .onChange(of: jokeText) { _ in
-                    currentJokeCate = selectedCategory.rawValue.capitalized
-                }
-                .onChange(of: selectedCategory) { _ in
-                    if selectedCategory == .dark {
-                        showAlertDark.toggle()
-                    }
-                }
-                .fullScreenCover(isPresented: $showSetting) {
-                    SettingView(showSetting: $showSetting, emailLoggedIn: $emailLoggedIn, user: $user)
                 }
             }
         }
@@ -175,7 +174,7 @@ extension HomeView {
                         .font(.title2.bold())
                         .padding()
                         .frame(maxWidth: .infinity, minHeight: 60)
-                        .background(Color.blue.opacity(0.9)) 
+                        .background(Color.blue.opacity(0.9))
                         .foregroundColor(.white)
                         .cornerRadius(15) // Rounded corners
                         .shadow(color: .gray, radius: 5, x: 0, y: 3)
@@ -190,7 +189,6 @@ extension HomeView {
 // MARK: - Functions
 
 extension HomeView {
-    
     private func backgroundColor(for category: JokeCategory) -> Color { // Change background color based on category
         switch category {
         case .any: return Color.blue.opacity(0.7)
@@ -228,6 +226,8 @@ extension HomeView {
                         } else {
                             jokeText = "\(joke.setup ?? "")\n\n\(joke.delivery ?? "")"
                         }
+                        // Add joke to history
+                        jokeHistory.append(jokeText)
                     } else {
                         jokeText = "No jokes found."
                     }
