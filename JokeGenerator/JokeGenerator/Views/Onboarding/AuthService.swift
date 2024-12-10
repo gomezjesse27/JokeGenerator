@@ -46,4 +46,24 @@ class AuthService {
         UserDefaults.standard.set("", forKey: USER_EMAIL)
     }
     
+// MARK: - Favorites Functions
+//------------------------------------------------------
+    @MainActor
+    func saveFavoriteJoke(email: String, joke: String) async throws {
+        let favoritesRef = Firestore.firestore().collection("users").document(email).collection("favorites")
+        let docData: [String: Any] = [
+            "joke": joke,
+            "timestamp": Timestamp(date: Date())
+        ]
+        try await favoritesRef.addDocument(data: docData)
+    }
+    
+    @MainActor
+    func loadFavoriteJokes(email: String) async throws -> [String] {
+        let favoritesRef = Firestore.firestore().collection("users").document(email).collection("favorites")
+        let snapshot = try await favoritesRef.order(by: "timestamp", descending: false).getDocuments()
+        let jokes = snapshot.documents.compactMap { $0.data()["joke"] as? String }
+        return jokes
+    }
+    
 }

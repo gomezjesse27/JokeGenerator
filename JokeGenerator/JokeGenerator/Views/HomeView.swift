@@ -21,63 +21,45 @@ struct HomeView: View {
     @State private var currentJokeCate: String = ""
     @State private var showSetting: Bool = false
     @State private var showAlertDark: Bool = false
-    @State private var showHistory: Bool = false // Navigate to HistoryView
-
-    // MARK: - View
-
+    @State private var showHistory: Bool = false // for history view
+    @State private var showSideMenu: Bool = false // for side menu
+    @State private var showFavorites: Bool = false // for favorites view state
+    
     var body: some View {
         GeometryReader { geometry in
-            let isLandscape = geometry.size.width > geometry.size.height // Check for landscape mode
-
-            ZStack {
+            let isLandscape = geometry.size.width > geometry.size.height
+            
+            ZStack(alignment: .leading) {
                 backgroundColor(for: selectedCategory)
                     .ignoresSafeArea()
                 
+                // Main Content
                 VStack(spacing: isLandscape ? 10 : 20) {
-                    
-                    // Header section
+                    // header section... added hamburger menu
                     headerView
-
                     if isLandscape {
                         HStack(spacing: 20) {
                             jokeCardView
                                 .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.7)
-
+                            
                             VStack(spacing: 20) {
                                 categoryPickerView
                                     .frame(width: geometry.size.width * 0.35)
-
+                                
                                 refreshButtonView
                                     .frame(width: geometry.size.width * 0.35)
                             }
                         }
                     } else {
                         Spacer()
-                        jokeCardView.frame(height: geometry.size.height * 0.4)
+                        jokeCardView
+                            .frame(height: geometry.size.height * 0.4)
                         Spacer()
                         categoryPickerView
                         refreshButtonView
                     }
-
-                    // Navigation button to HistoryView
-                    Button(action: {
-                        showHistory = true
-                    }) {
-                        Text("View Joke History")
-                            .font(.title2.bold())
-                            .padding()
-                            .frame(maxWidth: .infinity, minHeight: 60)
-                            .background(Color.green.opacity(0.9))
-                            .foregroundColor(.white)
-                            .cornerRadius(15)
-                            .shadow(color: .gray, radius: 5, x: 0, y: 3)
-                    }
-                    .padding(.horizontal)
                 }
                 .padding()
-                .sheet(isPresented: $showHistory) {
-                    HistoryView(history: jokeHistory)
-                }
                 .animation(.easeInOut, value: selectedCategory)
                 .onAppear {
                     fetchJoke()
@@ -93,6 +75,31 @@ struct HomeView: View {
                 } message: {
                     Text("The dark jokes can be offensive to some people. Please proceed with caution.")
                 }
+                
+                
+                if showSideMenu {
+                    // overlay behind side menu.. semi transparent
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            withAnimation {
+                                showSideMenu = false
+                            }
+                        }
+                    
+                    //side menu transis
+                    sideMenu
+                        .transition(.move(edge: .leading))
+                }
+            }
+            .sheet(isPresented: $showHistory) {
+                HistoryView(history: jokeHistory)
+            }
+            .sheet(isPresented: $showSetting) {
+                SettingView(showSetting: $showSetting, emailLoggedIn: $emailLoggedIn, user: $user)
+            }
+            .sheet(isPresented: $showFavorites) {
+                FavoritesView(email: user.email)
             }
         }
     }
@@ -101,54 +108,127 @@ struct HomeView: View {
 // MARK: - Subviews
 
 extension HomeView {
-
     var headerView: some View {
         HStack {
+            // system icon for hamburger
+            Button(action: {
+                withAnimation {
+                    showSideMenu.toggle()
+                }
+            }) {
+                Image(systemName: "line.horizontal.3")
+                    .resizable()
+                    .frame(width: 24, height: 16)
+                    .padding()
+                    .background(Color.white.opacity(0.2))
+                    .clipShape(Circle())
+            }
+
+            Spacer()
+
             // Title
             Text(user.username.isEmpty ? "Welcome!" : "Hi, \(user.username)!")
                 .font(.largeTitle.bold())
                 .foregroundColor(.white)
-            
+
             Spacer()
-            // Settings button
-            Image(systemName: "gear")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .padding()
-                .background(Color.white.opacity(0.2))
-                .clipShape(Circle())
-                .onTapGesture {
-                    showSetting.toggle()
-                }
         }
         .padding(.horizontal)
     }
+// Hamburger Menu View here - we can move this into seperate file but i mean its part of homeview so i wouldn't
+    var sideMenu: some View {
+        VStack(alignment: .leading, spacing: 40) {
+            Text("Menu")
+                .font(.largeTitle.bold())
+                .padding(.top, 60)
+                .padding(.leading, 20)
+                .foregroundColor(.white)
+
+            Button(action: {
+                withAnimation {
+                    showSideMenu = false
+                    showHistory = true
+                }
+            }) {
+                Label("View Joke History", systemImage: "clock")
+                    .foregroundColor(.white)
+                    .font(.title2.bold())
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+            }
+
+            Button(action: {
+                withAnimation {
+                    showSideMenu = false
+                    showFavorites = true
+                }
+            }) {
+                Label("Favorites", systemImage: "heart.fill")
+                    .foregroundColor(.white)
+                    .font(.title2.bold())
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+            }
+
+            Button(action: {
+                withAnimation {
+                    showSideMenu = false
+                    showSetting = true
+                }
+            }) {
+                Label("Settings", systemImage: "gear")
+                    .foregroundColor(.white)
+                    .font(.title2.bold())
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+            }
+
+            Spacer()
+        }
+        .frame(width: 250)
+        .background(Color.blue.opacity(0.9))
+        .ignoresSafeArea()
+    }
     
     var jokeCardView: some View {
-        // Card to display the joke
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color.white.opacity(0.9))
                 .shadow(radius: 5)
             
             VStack(spacing: 10) {
-                Text(jokeText) // Joke content
+                Text(jokeText)
                     .font(.title2.bold())
                     .multilineTextAlignment(.center)
                     .padding()
                     .foregroundColor(.black)
                 
-                Text("- \(currentJokeCate) joke") // Joke category
+                Text("- \(currentJokeCate) joke")
                     .font(.footnote.italic())
                     .foregroundColor(.gray)
+                
+                // like button
+                Button(action: {
+                    saveFavoriteJoke()
+                }) {
+                    HStack {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.red)
+                        Text("Like")
+                            .fontWeight(.bold)
+                    }
+                    .padding(10)
+                    .background(Color.red.opacity(0.2))
+                    .cornerRadius(8)
+                }
+                .padding(.top, 10)
             }
             .padding()
         }
         .padding(.horizontal)
     }
-    
+
     var categoryPickerView: some View {
-        // Picker to choose joke categories
         Picker("Category", selection: $selectedCategory) {
             ForEach(JokeCategory.allCases, id: \.self) { category in
                 Text(category.rawValue.capitalized)
@@ -162,9 +242,8 @@ extension HomeView {
         .background(Color.gray.opacity(0.4))
         .cornerRadius(12)
     }
-    
+
     var refreshButtonView: some View {
-        // Button to fetch a new joke
         Button(action: fetchJoke) {
             HStack {
                 if isLoading {
@@ -176,12 +255,12 @@ extension HomeView {
                         .frame(maxWidth: .infinity, minHeight: 60)
                         .background(Color.blue.opacity(0.9))
                         .foregroundColor(.white)
-                        .cornerRadius(15) // Rounded corners
+                        .cornerRadius(15)
                         .shadow(color: .gray, radius: 5, x: 0, y: 3)
                 }
             }
         }
-        .disabled(isLoading) // Disable while loading
+        .disabled(isLoading)
         .padding(.horizontal)
     }
 }
@@ -189,7 +268,7 @@ extension HomeView {
 // MARK: - Functions
 
 extension HomeView {
-    private func backgroundColor(for category: JokeCategory) -> Color { // Change background color based on category
+    private func backgroundColor(for category: JokeCategory) -> Color {
         switch category {
         case .any: return Color.blue.opacity(0.7)
         case .programming: return Color.green
@@ -202,7 +281,6 @@ extension HomeView {
     }
     
     private func fetchUserData() async throws {
-        // Fetch user data from backend
         do {
             let email = userEmail ?? ""
             user = try await AuthService.shared.loadUserData(email: email)
@@ -226,14 +304,25 @@ extension HomeView {
                         } else {
                             jokeText = "\(joke.setup ?? "")\n\n\(joke.delivery ?? "")"
                         }
-                        // Add joke to history
                         jokeHistory.append(jokeText)
+                        currentJokeCate = selectedCategory.rawValue.capitalized
                     } else {
                         jokeText = "No jokes found."
                     }
                 case .failure(let error):
                     jokeText = "Failed to fetch joke: \(error.localizedDescription)"
                 }
+            }
+        }
+    }
+    
+    private func saveFavoriteJoke() {
+        guard !jokeText.isEmpty, !user.email.isEmpty else { return }
+        Task {
+            do {
+                try await AuthService.shared.saveFavoriteJoke(email: user.email, joke: jokeText)
+            } catch {
+                print("DEBUG: Failed to save favorite joke: \(error)")
             }
         }
     }
@@ -255,3 +344,4 @@ struct HomeView_Previews: PreviewProvider {
         HomeView(emailLoggedIn: .constant(""))
     }
 }
+

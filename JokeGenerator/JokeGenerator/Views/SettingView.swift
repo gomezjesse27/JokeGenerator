@@ -17,7 +17,7 @@ struct SettingView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            let isLandscape = geometry.size.width > geometry.size.height// Check for landscape mode
+            let isLandscape = geometry.size.width > geometry.size.height
             
             VStack(spacing: isLandscape ? 10 : 20) {
                 // Header
@@ -119,6 +119,10 @@ extension SettingView {
 
 struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingView(showSetting: .constant(true), emailLoggedIn: .constant("mail"), user: .constant(User.exampleUser))
+        SettingView(
+            showSetting: .constant(true),
+            emailLoggedIn: .constant("test@example.com"),
+            user: .constant(User.exampleUser)
+        )
     }
 }
