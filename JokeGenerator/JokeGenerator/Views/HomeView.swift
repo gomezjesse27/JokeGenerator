@@ -1,8 +1,8 @@
 //
-//HomeView.swift
-//JokeGenerator
+// HomeView.swift
+// JokeGenerator
 //
-//Created by Jaysen Gomez, Mariah salgado
+// Created by Jaysen Gomez, Mariah Salgado
 //
 
 import SwiftUI
@@ -21,81 +21,85 @@ struct HomeView: View {
     @State private var showSetting: Bool = false
     @State private var showAlertDark: Bool = false
 
-//MARK: - View
+    // MARK: - View
     
     var body: some View {
         GeometryReader { geometry in
-            let isLandscape = geometry.size.width > geometry.size.height// Check for landscape mode
-            
-            VStack(spacing: isLandscape ? 10 : 20) {
+            let isLandscape = geometry.size.width > geometry.size.height // Check for landscape mode
+
+            ZStack { // Use ZStack to ensure the background fills the entire screen
+                backgroundColor(for: selectedCategory)
+                    .ignoresSafeArea()
                 
-                // Header section (title + settings button)
-                headerView
-                
-                if isLandscape {
-                    // Layout for landscape mode
-                    HStack(spacing: 20) {
-                        // Joke Display in landscape mode
-                        jokeCardView
-                            .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.7)
-                        
-                        VStack(spacing: 20) {
-                            // Picker and Button stacked vertically
-                            categoryPickerView
-                                .frame(width: geometry.size.width * 0.35)
+                VStack(spacing: isLandscape ? 10 : 20) {
+                    
+                    // Header section (title + settings button)
+                    headerView
+                    
+                    if isLandscape {
+                        // Layout for landscape mode
+                        HStack(spacing: 20) {
+                            // Joke Display in landscape mode
+                            jokeCardView
+                                .frame(width: geometry.size.width * 0.6, height: geometry.size.height * 0.7)
                             
-                            refreshButtonView
-                                .frame(width: geometry.size.width * 0.35)
+                            VStack(spacing: 20) {
+                                // Picker and Button stacked vertically
+                                categoryPickerView
+                                    .frame(width: geometry.size.width * 0.35)
+                                
+                                refreshButtonView
+                                    .frame(width: geometry.size.width * 0.35)
+                            }
                         }
+                    } else {
+                        // Portrait layout
+                        Spacer()
+                        
+                        // Joke Display
+                        jokeCardView
+                            .frame(height: geometry.size.height * 0.4)
+                        
+                        Spacer()
+                        
+                        // Picker and Button stacked vertically
+                        categoryPickerView
+                        refreshButtonView
                     }
-                } else {
-                    // Portrait layout
-                    Spacer()
-                    
-                    // Joke Display
-                    jokeCardView
-                        .frame(height: geometry.size.height * 0.4)
-                    
-                    Spacer()
-                    
-                    // Picker and Button stacked vertically
-                    categoryPickerView
-                    refreshButtonView
                 }
-            }
-            .padding()
-            .background(backgroundColor(for: selectedCategory))
-            .animation(.easeInOut, value: selectedCategory)
-            .onAppear {
-                fetchJoke()
-                Task {
-                    try await fetchUserData()
+                .padding()
+                .animation(.easeInOut, value: selectedCategory)
+                .onAppear {
+                    fetchJoke()
+                    Task {
+                        try await fetchUserData()
+                    }
                 }
-            }
-            .alert("Warning!", isPresented: $showAlertDark) {
-                Button("No, take me back", role: .destructive) {
-                    selectedCategory = .any
+                .alert("Warning!", isPresented: $showAlertDark) {
+                    Button("No, take me back", role: .destructive) {
+                        selectedCategory = .any
+                    }
+                    Button("OK, let's go", role: .cancel) {}
+                } message: {
+                    Text("The dark jokes can be offensive to some people. Please proceed with caution.")
                 }
-                Button("OK, let's go", role: .cancel) {}
-            } message: {
-                Text("The dark jokes can be offensive to some people. Please proceed with caution.")
-            }
-            .onChange(of: jokeText) { _ in
-                currentJokeCate = selectedCategory.rawValue.capitalized
-            }
-            .onChange(of: selectedCategory) { _ in
-                if selectedCategory == .dark {
-                    showAlertDark.toggle()
+                .onChange(of: jokeText) { _ in
+                    currentJokeCate = selectedCategory.rawValue.capitalized
                 }
-            }
-            .fullScreenCover(isPresented: $showSetting) {
-                SettingView(showSetting: $showSetting, emailLoggedIn: $emailLoggedIn, user: $user)
+                .onChange(of: selectedCategory) { _ in
+                    if selectedCategory == .dark {
+                        showAlertDark.toggle()
+                    }
+                }
+                .fullScreenCover(isPresented: $showSetting) {
+                    SettingView(showSetting: $showSetting, emailLoggedIn: $emailLoggedIn, user: $user)
+                }
             }
         }
     }
 }
 
-//MARK: - Subviews
+// MARK: - Subviews
 
 extension HomeView {
 
@@ -129,13 +133,13 @@ extension HomeView {
                 .shadow(radius: 5)
             
             VStack(spacing: 10) {
-                Text(jokeText)// Joke content
+                Text(jokeText) // Joke content
                     .font(.title2.bold())
                     .multilineTextAlignment(.center)
                     .padding()
                     .foregroundColor(.black)
                 
-                Text("- \(currentJokeCate) joke")// Joke category
+                Text("- \(currentJokeCate) joke") // Joke category
                     .font(.footnote.italic())
                     .foregroundColor(.gray)
             }
@@ -150,13 +154,14 @@ extension HomeView {
             ForEach(JokeCategory.allCases, id: \.self) { category in
                 Text(category.rawValue.capitalized)
                     .tag(category)
-                    .foregroundColor(.white)
             }
         }
         .pickerStyle(SegmentedPickerStyle())
-        .padding(.horizontal)
+        .padding()
+        .frame(height: 60)
+        .font(.title2)
         .background(Color.gray.opacity(0.4))
-        .cornerRadius(8)
+        .cornerRadius(12)
     }
     
     var refreshButtonView: some View {
@@ -167,26 +172,26 @@ extension HomeView {
                     ProgressView()
                 } else {
                     Text("Next \"\(selectedCategory.rawValue.capitalized)\" Joke")
-                        .font(.headline)
+                        .font(.title2.bold())
                         .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue.opacity(0.7)) // Lighter blue color
+                        .frame(maxWidth: .infinity, minHeight: 60)
+                        .background(Color.blue.opacity(0.9)) 
                         .foregroundColor(.white)
-                        .cornerRadius(12)
+                        .cornerRadius(15) // Rounded corners
                         .shadow(color: .gray, radius: 5, x: 0, y: 3)
                 }
             }
         }
-        .disabled(isLoading)// Disable while loading
+        .disabled(isLoading) // Disable while loading
         .padding(.horizontal)
     }
 }
 
-//MARK: - Functions
+// MARK: - Functions
 
 extension HomeView {
     
-    private func backgroundColor(for category: JokeCategory) -> Color {// Change background color based on category
+    private func backgroundColor(for category: JokeCategory) -> Color { // Change background color based on category
         switch category {
         case .any: return Color.blue.opacity(0.7)
         case .programming: return Color.green
@@ -243,7 +248,7 @@ extension JokeCategory: CaseIterable, Identifiable {
     }
 }
 
-//MARK: - Previews
+// MARK: - Previews
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
